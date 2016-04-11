@@ -15,7 +15,7 @@ defmodule Chat.RoomChannel do
   end
 
   def handle_out("new_msg", payload, socket) do
-    push socket, "new_msg", payload
+    push(socket, "new_msg", payload)
     {:noreply, socket}
   end
 end

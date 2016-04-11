@@ -28,7 +28,7 @@ defmodule Chat.SessionController do
   defp sign_in(user, password, conn) when is_nil(user) do
     conn
       |> put_flash(:error, 'Could not find a user with that username.')
-      |> render "new.html", changeset: User.changeset(%User{})
+      |> render("new.html", changeset: User.changeset(%User{}))
   end
 
   defp sign_in(user, password, conn) when is_map(user) do
@@ -43,7 +43,9 @@ defmodule Chat.SessionController do
       true ->
         conn
           |> put_flash(:error, 'Username or password are incorrect.')
-          |> render "new.html", changeset: User.changeset(%User{})
+          |> render("new.html", changeset: User.changeset(%User{}))
     end
   end
+
+  
 end

@@ -1,6 +1,8 @@
 defmodule Chat.UserSocket do
   use Phoenix.Socket
 
+  alias Chat.{Repo, User}
+
   ## Channels
   channel "rooms:*", Chat.RoomChannel
 
@@ -20,6 +22,7 @@ defmodule Chat.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
+
   def connect(_params, socket) do
     {:ok, socket}
   end

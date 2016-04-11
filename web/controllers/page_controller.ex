@@ -3,8 +3,12 @@ defmodule Chat.PageController do
 
   plug Chat.Plug.Authenticate
 
-  def index(conn, _params) do
-    render conn, "index.html"
-    IO.puts(conn.assigns.current_user)
+  def action(conn, _) do
+    apply(__MODULE__, action_name(conn),
+      [conn, conn.params, conn.assigns.current_user])
+  end
+
+  def index(conn, _params, current_user) do
+    render(conn, "index.html", user: current_user)
   end
 end
