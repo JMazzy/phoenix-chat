@@ -31,6 +31,8 @@ defmodule Chat.Web do
       use Phoenix.Controller
 
       alias Chat.Repo
+      alias Chat.User
+
       import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
 

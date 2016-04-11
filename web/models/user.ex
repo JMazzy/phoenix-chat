@@ -4,11 +4,15 @@ defmodule Chat.User do
   schema "users" do
     field :name, :string
     field :email, :string
+    field :username, :string
+    field :encrypted_password, :string
+    field :password, :string, virtual: true
+    field :password_confirmation, :string, virtual: true
 
     timestamps
   end
 
-  @required_fields ~w(name email)
+  @required_fields ~w(name email username password password_confirmation)
   @optional_fields ~w()
 
   @doc """
@@ -22,5 +26,15 @@ defmodule Chat.User do
     |> cast(params, @required_fields, @optional_fields)
     |> validate_length(:email, min: 5)
     |> validate_format(:email, ~r/@/)
+    |> unique_constraint(:username, on: Chat.Repo, downcase: true)
+    |> validate_length(:password, min: 6)
+    |> validate_length(:password_confirmation, min: 6)
+    |> validate_confirmation(:password)
   end
+
+  # def validate_confirmation(changeset, field) do
+  #   value = get_field(changeset, field)
+  #   confirmation_value = get_field(changeset, :"#{field}_confirmation")
+  #   if value != confirmation_value, do: add_error(changeset, :"#{field}_confirmation", "does not match"), else: changeset
+  # end
 end
