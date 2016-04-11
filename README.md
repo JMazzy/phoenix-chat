@@ -1,5 +1,9 @@
 # Chat
 
+My version of the chatroom app from the Phoenix Framework "Channels" tutorial.
+
+## Instructions (from Phoenix)
+
 To start your Phoenix app:
 
   * Install dependencies with `mix deps.get`
