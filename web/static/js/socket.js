@@ -10,7 +10,6 @@ socket.connect()
 let channel           = socket.channel("rooms:lobby", {})
 let chatInput         = $("#chat-input")
 let messagesContainer = $("#messages")
-let username = $("#name").text()
 
 // This adds the message to the channel when you press enter
 chatInput.on("keypress", event => {
@@ -26,7 +25,7 @@ channel.on("new_msg", payload => {
   var dateString =  ('0' + date.getHours()).slice(-2) + ":" +
                     ('0' + date.getMinutes()).slice(-2) + ":" +
                     ('0' + date.getSeconds()).slice(-2);
-  messagesContainer.append(`<hr><strong>${username}</strong> ${dateString} <br> ${payload.body}`)
+  messagesContainer.append(`<hr><strong>${"username"}</strong> ${dateString} <br> ${payload.body}`)
 })
 
 // Joins the channel
